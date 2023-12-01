@@ -1,4 +1,4 @@
-lines = readlines("/Users/james/Documents/AoC/AoC_2023/Day_1/input")
+lines = readlines("/Users/james/Documents/AoC/AoC_2023/Day_1/input.txt")
 [match.match for match in eachmatch(r"\d", lines[1])]
 
 function firstlast_digits(x)
