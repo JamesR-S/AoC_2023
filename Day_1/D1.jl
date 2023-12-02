@@ -1,9 +1,9 @@
+# Runs in 3.8ms
 lines = readlines("/Users/james/Documents/AoC/AoC_2023/Day_1/input.txt")
-[match.match for match in eachmatch(r"\d", lines[1])]
 
 function firstlast_digits(x)
     digits = [match.match for match in eachmatch(r"\d", x)]
-    return parse(Int,digits[1]*digits[end])
+    return parse(Int32,digits[1]*digits[end])
 end
 
 println("The answer to part one is $(sum([firstlast_digits(line) for line in lines]))")
