@@ -54,7 +54,6 @@ function powersum(games::Array)
     return power
 end
 
-
 max_cubes = [count_cubes(line) for line in lines]
 
 possible_games = rulebreakers(max_cubes,cubes(12,13,14))
