@@ -34,7 +34,7 @@ function count_cubes(game::String)
     return count
 end
 
-function rulebreakers(games::Array,limit::cubes)
+function possible(games::Array,limit::cubes)
     n_possible = 0
     index= 0
     for game in games
@@ -56,7 +56,7 @@ end
 
 max_cubes = [count_cubes(line) for line in lines]
 
-possible_games = rulebreakers(max_cubes,cubes(12,13,14))
+possible_games = possible(max_cubes,cubes(12,13,14))
 
 sum_of_powers = powersum(max_cubes)
 
