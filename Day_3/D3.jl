@@ -1,4 +1,4 @@
-#Runs in 146.003 ms
+#Runs in 115.85 ms
 
 mutable struct numbercoords
     x::Int16
@@ -75,14 +75,13 @@ end
 
 function adjacent_numbers!(symbols,numbers)
     for symbol in symbols
-        for num in 1:length(numbers)
+        matching_indices = [index for (index, number) in enumerate(numbers) if (symbol.x ∈ (number.x-1):(number.x+1)) && (symbol.y ≥ (number.y_start-1)) && (symbol.y ≤ (number.y_end+1))]
+        for num in matching_indices
             number=numbers[num]
-            if (symbol.x ∈ (number.x-1):(number.x+1)) && (symbol.y ∈ (number.y_start-1):(number.y_end+1))
-                numbers[num].counted=true
-                if symbol.is_gear
-                    symbol.adjacent_n +=1
-                    symbol.ratio *= number.value
-                end
+            numbers[num].counted=true
+            if symbol.is_gear
+                symbol.adjacent_n +=1
+                symbol.ratio *= number.value
             end
         end
     end
