@@ -17,12 +17,7 @@ mutable struct symbolcoords
 end
 
 function file_to_matrix(filename)
-    file_content = read(filename, String)
-    lines = split(file_content, '\n')
-
-    while !isempty(lines) && all(isspace, lines[end])
-        pop!(lines)
-    end
+    lines = readlines(filename)
 
     num_rows = length(lines)
     num_cols = length(lines[1])  
