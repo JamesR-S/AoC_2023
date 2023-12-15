@@ -72,14 +72,12 @@ end
 order_map2 = Dict('J'=>1, '2'=>2, '3'=>3, '4'=>4, '5'=>5, '6'=>6, '7'=>7, '8'=>8, '9'=>9, 'T'=>10, 'Q'=>12, 'K'=>13,'A'=>14)
 
 function custom_compare_pt2(x, y)
-    x_chars = collect(x[1])
-    y_chars = collect(y[1])
-    for (xc, yc) in zip(x_chars, y_chars)
+    for (xc, yc) in zip(x[1], y[1])
         if order_map2[xc] != order_map2[yc]
             return order_map2[xc] < order_map2[yc]
         end
     end
-    return length(x_chars) < length(y_chars)
+    return length(x[1]) < length(y[1])
 end
 
 function classify_hands_pt2(hands)
