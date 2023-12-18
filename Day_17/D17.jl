@@ -23,23 +23,20 @@ function dijkstra(data::Matrix{Int}, min_dist::Int, max_dist::Int)
               CartesianIndex(0, 1), CartesianIndex(-1, 0))
     UP = 1; RIGHT = 2; DOWN = 3; LEFT = 4
     OPPOSITE = (DOWN, LEFT, UP, RIGHT)
-    MAX_COST = typemax(Int)
+    MAX_COST = typemax(Int16)
     dist = fill(MAX_COST, length(DIRS), max_dist, size(data)...)
     queue = PriorityQueue{CartesianIndex{4}, Int}()
 
-    # Initialize queue with maximum cost
     for p in CartesianIndices(data), dir in eachindex(DIRS), seq in 1:max_dist
         queue[CartesianIndex(dir, seq, p)] = MAX_COST
     end
 
-    # Setting initial positions
     for (source, source_dist) in (
         (CartesianIndex(DOWN, 1, 1, 2), data[1, 2]),
         (CartesianIndex(RIGHT, 1, 2, 1), data[2, 1]))
         dist[source] = queue[source] = source_dist
     end
 
-    # Dijkstra's main loop
     while !isempty(queue)
         u = dequeue!(queue)
         dist_u = dist[u]
@@ -66,8 +63,6 @@ function dijkstra(data::Matrix{Int}, min_dist::Int, max_dist::Int)
     return minimum(dist[:, min_dist:max_dist, end, end])
 end
 
-# Test with your matrix
-# Example Usage
 matrix = file_to_matrix("input.txt")
 pt1_res = dijkstra(matrix,1,3)
 pt2_res = dijkstra(matrix,4,10)
