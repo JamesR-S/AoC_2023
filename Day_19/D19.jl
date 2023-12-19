@@ -12,7 +12,6 @@ function parse_to_conditions(s)
             condition, result = condition_result
             push!(conditions, (condition, result))
         else
-            # For the last default value
             default_result = condition_result[1]
             push!(conditions, (nothing, default_result))
         end
@@ -24,13 +23,11 @@ end
 function store_ternaries(ternaries::Vector{SubString{String}})
     ternary_cond_dict = Dict()
     for ternary in ternaries
-        # Use regex to extract the name and the ternary expression
         matched = match(r"(\w+)\{(.+)\}", ternary)
         if matched !== nothing
             name = matched.captures[1]
             conditions = parse_to_conditions(matched.captures[2])
 
-            # Store in dictionary
             ternary_cond_dict[name] = conditions
         end
     end
@@ -39,10 +36,7 @@ function store_ternaries(ternaries::Vector{SubString{String}})
 end
 
 function file_parse(path::String)
-    # Read the entire file content
     file_content = read(path, String)
-
-    # Split the content into blocks separated by empty lines
     blocks = [strip(f) for f in split(file_content, "\n\n")]
     
     parts = [(x = parse(Int16,m[1]), m = parse(Int16,m[2]), a = parse(Int16,m[3]), s = parse(Int16,m[4])) for i in split(blocks[2],"\n") for m in eachmatch(r"{x=(\d+),m=(\d+),a=(\d+),s=(\d+)}",i)]
@@ -89,11 +83,9 @@ function sort_parts(parts, conditions)
 end
 
 function split_range(range_tuple, condition_str)
-    # Parse the condition string
     key,op, value = match(r"([a-z])([<>]=?)(\d+)", condition_str).captures
     value = parse(Int, value)
     key = Symbol(key)
-    # Create lambda functions based on the condition
     range = getproperty(range_tuple, key)
     start, stop = first(range), last(range)
     if op == "<"
@@ -102,7 +94,6 @@ function split_range(range_tuple, condition_str)
         first_range,second_range = max(value + 1, start):stop, start:min(value, stop)
     end
     filtered_pairs = [(k => v) for (k, v) in pairs(range_tuple) if k ≠ key]
-    # Create a new named tuple from the filtered pairs
     filtered_nt = NamedTuple(filtered_pairs)
     new_tuple_1 = merge(filtered_nt,NamedTuple{(key,)}((first_range,)))
     new_tuple_2 = merge(filtered_nt,NamedTuple{(key,)}((second_range,)))
