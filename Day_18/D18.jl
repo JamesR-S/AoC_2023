@@ -36,7 +36,6 @@ function shoelace(vertices,perimiter)
         area -= vertices[i+1][1] * vertices[i][2]
     end
     area = abs(area) / 2
-    # Add the last vertex to the first vertex calculatio
 
     return area + perimiter/2 +1
 end
