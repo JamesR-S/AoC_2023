@@ -1,4 +1,7 @@
 # Runs in 4.1ms
+
+cd(@__DIR__)
+
 function card_scoring(line::String)
     winning,scratched = split(line,"|")
     winning_digits = [match.match for match in eachmatch(r"\d+", winning)][2:end]
@@ -29,7 +32,7 @@ function total_cards(lines::Array)
     return sum(cards)
 end
 
-lines = readlines("/Users/james/Documents/AoC/AoC_2023/Day_4/input.txt")
+lines = readlines("input.txt")
 
 pt1 = sum([card_scoring(line) for line in lines])
 

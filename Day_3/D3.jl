@@ -1,5 +1,7 @@
 #Runs in 115.85 ms
 
+cd(@__DIR__)
+
 mutable struct numbercoords
     x::Int16
     y_start::Int16
@@ -82,7 +84,7 @@ function adjacent_numbers!(symbols,numbers)
     end
 end
 
-input = file_to_matrix("/Users/james/Documents/AoC/AoC_2023/Day_3/input.txt")
+input = file_to_matrix("input.txt")
 
 numbers = find_numbers(input)
 

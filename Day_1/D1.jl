@@ -1,5 +1,8 @@
 # Runs in 3.8ms
-lines = readlines("/Users/james/Documents/AoC/AoC_2023/Day_1/input.txt")
+
+cd(@__DIR__)
+
+lines = readlines("input.txt")
 
 function firstlast_digits(x)
     digits = [match.match for match in eachmatch(r"\d", x)]

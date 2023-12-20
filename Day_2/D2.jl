@@ -1,5 +1,8 @@
 # Runs in 784.071 μs
-lines = readlines("/Users/james/Documents/AoC/AoC_2023/Day_2/input.txt")
+
+cd(@__DIR__)
+
+lines = readlines("input.txt")
 
 mutable struct cubes
     red::Int32
