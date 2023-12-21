@@ -1,5 +1,7 @@
 #Runs in 13.86 ms
 
+cd(@__DIR__)
+
 struct substrate_map
     source::String
     dest::String
@@ -85,7 +87,7 @@ seeds_pt1 = [item_value("seed",parse(Int64,match.match),true) for match in eachm
 
 seeds_pt2 = seed_ranges([parse(Int64, match.match) for match in eachmatch(r"\d+", file_blocks("/Users/james/Documents/AoC/AoC_2023/Day_5/input.txt")[1])])
 
-mapping = file_blocks("/Users/james/Documents/AoC/AoC_2023/Day_5/input.txt")[2:end]
+mapping = file_blocks("/input.txt")[2:end]
 
 s_maps = transformations(mapping)
 
