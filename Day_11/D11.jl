@@ -59,4 +59,4 @@ input = file_to_matrix("input.txt")
 
 println("The answer to part 1 is ", find_pairwise_galaxies(input,1))
 
-println("The answer to part 1 is ", find_pairwise_galaxies(input,999999))
+println("The answer to part 2 is ", find_pairwise_galaxies(input,999999))

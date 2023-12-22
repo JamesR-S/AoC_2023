@@ -104,4 +104,4 @@ input = file_to_matrix("input.txt")
 
 println("The result to pt 1 is $(calculate_furthest(input))")
 
-println("The result to pt 2 is $(determine_area(input,visited))")
+println("The result to pt 2 is $(determine_area(input,traverse(input)))")
